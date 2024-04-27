@@ -1,38 +1,47 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.conteiner {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-align: center;
+  justify-content: center; /* Alinea el contenido al centro */
 }
 
-.App-link {
-  color: #61dafb;
+.input {
+  font-size: medium;
+  border: none;
+  width: 50%;
+  margin-bottom: 20px; /* Espacio entre el input y los botones */
+  padding: 8px; /* Espaciado interno del input */
+  border-radius: 5px; /* Esquinas redondeadas */
+  border: 1px solid #ccc; /* Borde gris */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.button-conteiner {
+  margin-left: 10px;
+}
+
+.create-button,
+.delete-button {
+  padding: 10px 20px; /* Espaciado interno de los botones */
+  margin-right: 10px; /* Espacio entre los botones */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Esquinas redondeadas */
+  cursor: pointer; /* Cambio de cursor al pasar el mouse */
+  transition: background-color 0.3s, color 0.3s; /* Transición de color de fondo y texto */
+}
+
+.create-button:hover,
+.delete-button:hover {
+  background-color: white; /* Nuevo color de fondo al pasar el mouse */
+  color: white; /* Nuevo color de texto al pasar el mouse */
+}
+
+.create-button {
+  background-color: #4caf50; /* Color de fondo verde */
+  color: white; /* Color de texto blanco */
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.delete-button {
+  background-color: #f44336; /* Color de fondo rojo */
+  color: white; /* Color de texto blanco */
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
