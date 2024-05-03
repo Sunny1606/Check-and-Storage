@@ -1,47 +1,41 @@
-.conteiner {
-  display: flex;
-  text-align: center;
-  justify-content: center; /* Alinea el contenido al centro */
+.divConteiner {
+  background-color: rgba(50, 44, 43, 0.699);
+
+  height: 100%;
+  width: 50%;
+
+  padding: 20px;
+  margin-left: 25%;
+
+  border-radius: 10px;
+}
+
+.buttonTrash {
+  background-color: rgb(128, 61, 59);
+  border-radius: 5px;
+  width: 10%;
+  padding: 7px;
+  border: none;
+  cursor: pointer;
 }
 
 .input {
+  background-color: rgb(175, 130, 96);
+  width: 40%;
+  padding: 10px;
   font-size: medium;
+  margin: 10px;
+  border-radius: 5px;
   border: none;
-  width: 50%;
-  margin-bottom: 20px; /* Espacio entre el input y los botones */
-  padding: 8px; /* Espaciado interno del input */
-  border-radius: 5px; /* Esquinas redondeadas */
-  border: 1px solid #ccc; /* Borde gris */
+  margin-left: 10%;
 }
 
-.button-conteiner {
-  margin-left: 10px;
-}
-
-.create-button,
-.delete-button {
-  padding: 10px 20px; /* Espaciado interno de los botones */
-  margin-right: 10px; /* Espacio entre los botones */
-  border: none; /* Sin borde */
-  border-radius: 5px; /* Esquinas redondeadas */
-  cursor: pointer; /* Cambio de cursor al pasar el mouse */
-  transition: background-color 0.3s, color 0.3s; /* Transición de color de fondo y texto */
-}
-
-.create-button:hover,
-.delete-button:hover {
-  background-color: white; /* Nuevo color de fondo al pasar el mouse */
-  color: white; /* Nuevo color de texto al pasar el mouse */
-}
-
-.create-button {
-  background-color: #4caf50; /* Color de fondo verde */
-  color: white; /* Color de texto blanco */
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-}
-
-.delete-button {
-  background-color: #f44336; /* Color de fondo rojo */
-  color: white; /* Color de texto blanco */
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+.buttonAdd {
+  background-color: bisque;
+  width: 20%;
+  margin: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
