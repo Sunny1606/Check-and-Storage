@@ -1,26 +1,13 @@
 import React from "react";
+import TodoItem from "./TodoItem";
+
+//
 
 export function TodoList({ todos }) {
   return (
     <ul>
       {todos.map((todo) => (
-        <li>
-          <li class="list-group-item">
-            <input type="checkbox" />
-          </li>
-          <li class="list-group-item">
-            <input type="checkbox" />
-          </li>
-          <li class="list-group-item">
-            <input type="checkbox" />
-          </li>
-          <li class="list-group-item">
-            <input type="checkbox" />
-          </li>
-          <li class="list-group-item">
-            <input type="checkbox" />
-          </li>
-        </li>
+        <TodoItem todo= {todo}/>
       ))}
     </ul>
   );
