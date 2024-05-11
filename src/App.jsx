@@ -9,21 +9,21 @@ export default function App() {
   //para manejar el checkbox del input
   //estado actual en false
 
+
+//resumen: toggleTodo sirve para los checkbox , para modificar de true a falsa o al reves, el estado de la prop completed. 
   const toggleTodo = (id) => {
     //crea una copia del array y lo guarda en newtodo
     const newtodo = [...todos];
     //busca en el array el id , para identificarlo y lo guarda en todo
     const todo = newtodo.find((todo) => todo.id === id);
-    //a la propiedad completed
+    //a la propiedad completed.
     todo.completed = !todo.completed;
     //se le pasa el nuevo array que hicimos al setTodos y lo guarda
     setTodos(newtodo);
   };
 
   //el estado cambia y se modifica lo que hace que al agregar una nueva tarea las demas no se borren, reenderiza el componente una y otra vez
-  const [todos, setTodos] = useState([
-    { id: 1, talks: "Tarea 1", completed: false },
-  ]);
+  const [todos, setTodos] = useState([{ id: 1, talks: "", completed: false }]);
 
   //useRef se define para actualizar un valor a la prop current myRef.current = newValue . para mantener valores que no desencadenen una nueva renderización cada vez que cambien.
   const todoTaskRef = useRef();
@@ -51,7 +51,6 @@ export default function App() {
         type="text"
         placeholder="nueva tarea..."
       />
-
       <button onClick={handleAdd} className="buttonAdd">
         AGREGAR
       </button>
@@ -59,9 +58,19 @@ export default function App() {
       <button className="buttonTrash">
         <img src={TrashIcon} alt="Trash Icon" />
       </button>
+     <div className="title">
+  Te quedan{" "}
+  {todos.slice(1).filter((todo) => !todo.completed).length} tareas por completar
+</div>
+
       <div>
         <TodoList todos={todos} toggleTodo={toggleTodo} />
       </div>
     </Fragment>
   );
 }
+
+//filtra las tareas que no están completadas y luego cuenta cuántas hay. 
+
+//RECORDATORIO
+//las propiedades van desde arriba hacia al ultimo componente, y los eventos vuelven hacia el principio de arriba.
