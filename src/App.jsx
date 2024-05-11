@@ -1,16 +1,36 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { TodoList } from "./components/TodoList";
 import TrashIcon from "./components/icons/icons.svg";
+// eslint-disable-next-line no-unused-vars
 import Appcss from "./App.css";
 import { useState, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 
+const KEY = "todoApp.todos";
+
 export default function App() {
   //para manejar el checkbox del input
   //estado actual en false
+  //el estado cambia y se modifica lo que hace que al agregar una nueva tarea las demas no se borren, reenderiza el componente una y otra vez
+  
+  const [todos, setTodos] = useState([{ id: 1, talks: "", completed: false }]);
+  
+  //useRef se define para actualizar un valor a la prop current myRef.current = newValue . para mantener valores que no desencadenen una nueva renderización cada vez que cambien.
+  const todoTaskRef = useRef();
 
+  useEffect(() => {
+    const storedTodos = JSON.parse(localStorage.getItem(KEY));
+    if (storedTodos) {
+      setTodos(storedTodos);
+    }
+  }, []);
 
-//resumen: toggleTodo sirve para los checkbox , para modificar de true a falsa o al reves, el estado de la prop completed. 
+  //Localstorage: solo puede almacenar cadenas de texto/ esto es para guardar y al recargar no borre los datos ingresados por el usuario/ salvando el array de todos.
+  useEffect(() => {
+    localStorage.setItem(KEY, JSON.stringify(todos));
+  }, [todos]);
+
+  //resumen: toggleTodo sirve para los checkbox , para modificar de true a falsa o al reves, el estado de la prop completed.
   const toggleTodo = (id) => {
     //crea una copia del array y lo guarda en newtodo
     const newtodo = [...todos];
@@ -22,11 +42,6 @@ export default function App() {
     setTodos(newtodo);
   };
 
-  //el estado cambia y se modifica lo que hace que al agregar una nueva tarea las demas no se borren, reenderiza el componente una y otra vez
-  const [todos, setTodos] = useState([{ id: 1, talks: "", completed: false }]);
-
-  //useRef se define para actualizar un valor a la prop current myRef.current = newValue . para mantener valores que no desencadenen una nueva renderización cada vez que cambien.
-  const todoTaskRef = useRef();
 
   //funcion para Agregar , funcion de boton
   const handleAdd = () => {
@@ -43,6 +58,13 @@ export default function App() {
     todoTaskRef.current.value = ""; // limpia el input
   };
 
+  //funcion para Eliminar tarea , funcion del tachito
+  const handleClearAll = () => {
+    //trabaja en consecuencia del cambio de completed de true a false
+    const newTodos = todos.filter((todo) => !todo.completed); //va a filtrar el false
+    setTodos(newTodos);
+  };
+
   return (
     <Fragment>
       <input
@@ -55,13 +77,13 @@ export default function App() {
         AGREGAR
       </button>
 
-      <button className="buttonTrash">
+      <button onClick={handleClearAll} className="buttonTrash">
         <img src={TrashIcon} alt="Trash Icon" />
       </button>
-     <div className="title">
-  Te quedan{" "}
-  {todos.slice(1).filter((todo) => !todo.completed).length} tareas por completar
-</div>
+      <div className="title">
+        Te quedan {todos.slice(1).filter((todo) => !todo.completed).length}{" "}
+        tareas por completar
+      </div>
 
       <div>
         <TodoList todos={todos} toggleTodo={toggleTodo} />
@@ -70,7 +92,7 @@ export default function App() {
   );
 }
 
-//filtra las tareas que no están completadas y luego cuenta cuántas hay. 
+//filtra las tareas que no están completadas y luego cuenta cuántas hay.
 
 //RECORDATORIO
 //las propiedades van desde arriba hacia al ultimo componente, y los eventos vuelven hacia el principio de arriba.
