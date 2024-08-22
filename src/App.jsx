@@ -5,16 +5,20 @@ import TrashIcon from "./components/icons/icons.svg";
 import Appcss from "./App.css";
 import { useState, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
+import Swal from 'sweetalert2'
+
 
 const KEY = "todoApp.todos";
 
 export default function App() {
+
+
   //para manejar el checkbox del input
   //estado actual en false
   //el estado cambia y se modifica lo que hace que al agregar una nueva tarea las demas no se borren, reenderiza el componente una y otra vez
-  
+
   const [todos, setTodos] = useState([{ id: 1, talks: "", completed: false }]);
-  
+
   //useRef se define para actualizar un valor a la prop current myRef.current = newValue . para mantener valores que no desencadenen una nueva renderización cada vez que cambien.
   const todoTaskRef = useRef();
 
@@ -42,7 +46,6 @@ export default function App() {
     setTodos(newtodo);
   };
 
-
   //funcion para Agregar , funcion de boton
   const handleAdd = () => {
     const talks = todoTaskRef.current.value; //obtener el valor actual del input
@@ -58,11 +61,14 @@ export default function App() {
     todoTaskRef.current.value = ""; // limpia el input
   };
 
+
   //funcion para Eliminar tarea , funcion del tachito
   const handleClearAll = () => {
-    //trabaja en consecuencia del cambio de completed de true a false
-    const newTodos = todos.filter((todo) => !todo.completed); //va a filtrar el false
-    setTodos(newTodos);
+    const confirmed = Swal.fire("Borrada con exito!");
+    if (confirmed) {
+      const newTodos = todos.filter((todo) => !todo.completed);
+      setTodos(newTodos);
+    }
   };
 
   return (
