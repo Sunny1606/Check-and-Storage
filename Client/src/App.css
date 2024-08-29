@@ -21,6 +21,9 @@
   margin: 10px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
+.buttonTrash:hover {
+  background-color: rgba(128, 128, 128, 0.336);
+}
 
 .input {
   background-color: rgb(192, 171, 154);
@@ -31,18 +34,37 @@
   border-radius: 5px;
   border: none;
   margin-left: 5%;
+  word-wrap: break-word; /* Permite que las palabras largas se dividan */
+  white-space: nowrap; /* Evita que el texto envuelva */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Muestra "..." si el texto es muy largo */
 }
 
 .listConteiner {
-  width: 70%; /* Ajusta según el ancho que necesites */
-  height: 50%;
-  margin-top: 20px; /* Espacio entre el botón y la lista */
+  width: 90%;
+  height: 70%;
+  margin-top: 20px;
   color: black;
   font-size: 20px;
   background-color: white;
   border-radius: 10px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 
+  overflow-y: auto;
+  /* padding: 10px; */
+}
+
+.listConteiner li {
+  max-width: 100%;
+  word-wrap: break-word;
+  white-space: normal;
+  list-style-type: none;
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+.listConteiner li:last-child {
+  border-bottom: none;
 }
 
 .buttonAdd {
@@ -54,10 +76,27 @@
   cursor: pointer;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
+.buttonAdd:hover {
+  background-color: rgba(240, 248, 255, 0.356);
+}
 
 .title {
   /* background-color: rgba(255, 235, 205, 0.301); */
   padding: 20px;
   border-radius: 5px;
   margin-bottom: 20px;
+}
+
+.btnSaveChanges {
+  margin: 15px;
+  background-color: red;
+  color: black;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+.btnSaveChanges:hover {
+  background-color: rgba(255, 0, 0, 0.397);
+  cursor: pointer;
 }

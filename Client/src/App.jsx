@@ -58,12 +58,12 @@ export default function App() {
     todoTaskRef.current.value = ""; // limpia el input
   };
 
-  //evento para funcionalidad de la t4ecla "enter" 
-  const handleKeyPress = (event)  => {
+  //evento para funcionalidad de la t4ecla "enter"
+  const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      handleAdd();   //llama a handleAdd cuando se presiona Enter
+      handleAdd(); //llama a handleAdd cuando se presiona Enter
     }
-  }
+  };
 
   const handleClearAll = () => {
     // Verifica si hay tareas completadas
@@ -115,6 +115,7 @@ export default function App() {
       <Fragment>
         <input
           ref={todoTaskRef}
+          maxlength="50"
           className="input"
           type="text"
           placeholder="nueva tarea..."
@@ -132,6 +133,7 @@ export default function App() {
         <div className="listConteiner">
           <TodoList todos={todos} toggleTodo={toggleTodo} />
         </div>
+        <button className="btnSaveChanges">Guardar Lista</button>
       </Fragment>
       <div className="title">
         Te quedan {todos.slice(1).filter((todo) => !todo.completed).length}{" "}
