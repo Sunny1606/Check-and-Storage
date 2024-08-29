@@ -12,17 +12,16 @@
 }
 
 .buttonTrash {
-  /* background-color: rgb(133, 104, 103); */
+ background-color: red;
   border-radius: 5px;
-  padding: 5px;
   border: none;
   cursor: pointer;
-  padding: 10px;
-  margin: 10px;
+  padding: 8px;
+  margin: 8px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 .buttonTrash:hover {
-  background-color: rgba(128, 128, 128, 0.336);
+  background-color:rgba(238, 0, 0, 0.863);
 }
 
 .input {
@@ -68,16 +67,16 @@
 }
 
 .buttonAdd {
-  background-color: aliceblue;
+  background-color: rgb(228, 228, 149);
   color: black;
-  padding: 10px;
+  padding: 8px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 .buttonAdd:hover {
-  background-color: rgba(240, 248, 255, 0.356);
+  background-color: rgba(228, 228, 149, 0.322);
 }
 
 .title {
@@ -89,14 +88,15 @@
 
 .btnSaveChanges {
   margin: 15px;
-  background-color: red;
+  background-color: lightblue;
   color: black;
   padding: 10px;
   border: none;
   border-radius: 5px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  margin-left: 430px;
 }
 .btnSaveChanges:hover {
-  background-color: rgba(255, 0, 0, 0.397);
+  background-color:rgba(173, 216, 230, 0.527);
   cursor: pointer;
 }
