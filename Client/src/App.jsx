@@ -5,14 +5,11 @@ import TrashIcon from "./components/icons/icons.svg";
 import Appcss from "./App.css";
 import { useState, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
-import Swal from 'sweetalert2'
-
+import Swal from "sweetalert2";
 
 const KEY = "todoApp.todos";
 
 export default function App() {
-
-
   //para manejar el checkbox del input
   //estado actual en false
   //el estado cambia y se modifica lo que hace que al agregar una nueva tarea las demas no se borren, reenderiza el componente una y otra vez
@@ -61,40 +58,86 @@ export default function App() {
     todoTaskRef.current.value = ""; // limpia el input
   };
 
-
-  //funcion para Eliminar tarea , funcion del tachito
-  const handleClearAll = () => {
-    const confirmed = Swal.fire("Borrada con exito!");
-    if (confirmed) {
-      const newTodos = todos.filter((todo) => !todo.completed);
-      setTodos(newTodos);
+  //evento para funcionalidad de la t4ecla "enter" 
+  const handleKeyPress = (event)  => {
+    if (event.key === "Enter") {
+      handleAdd();   //llama a handleAdd cuando se presiona Enter
     }
+  }
+
+  const handleClearAll = () => {
+    // Verifica si hay tareas completadas
+    const homeworks = todos.some((todo) => todo.completed);
+
+    if (todos.length === 0) {
+      // Si no hay tareas en total, muestra una alerta indicando que no hay tareas
+      Swal.fire({
+        title: "No hay tareas",
+        text: "No hay tareas para borrar.",
+        icon: "info",
+        confirmButtonText: "Ok",
+      });
+      return;
+    } else if (!homeworks) {
+      Swal.fire({
+        title: "No hay tareas completadas",
+        text: "No hay tareas completadas para borrar.",
+        icon: "info",
+        confirmButtonText: "Ok",
+      });
+      return;
+    }
+
+    // Muestra la alerta de confirmación correctamente
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "Esta acción borrará todas las tareas completadas.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí, borrar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Si se confirma, filtra las tareas completadas
+        const newTodos = todos.filter((todo) => !todo.completed);
+        setTodos(newTodos);
+        Swal.fire(
+          "Borrado con éxito!",
+          "Las tareas completadas han sido borradas.",
+          "success"
+        );
+      }
+    });
   };
 
   return (
-    <Fragment>
-      <input
-        ref={todoTaskRef}
-        className="input"
-        type="text"
-        placeholder="nueva tarea..."
-      />
-      <button onClick={handleAdd} className="buttonAdd">
-        AGREGAR
-      </button>
+    <div className="conteiner">
+      <Fragment>
+        <input
+          ref={todoTaskRef}
+          className="input"
+          type="text"
+          placeholder="nueva tarea..."
+          onKeyDown={handleKeyPress}
+        />
 
-      <button onClick={handleClearAll} className="buttonTrash">
-        <img src={TrashIcon} alt="Trash Icon" />
-      </button>
+        <button onClick={handleAdd} className="buttonAdd">
+          AGREGAR
+        </button>
+
+        <button onClick={handleClearAll} className="buttonTrash">
+          <img src={TrashIcon} alt="Trash Icon" />
+        </button>
+
+        <div className="listConteiner">
+          <TodoList todos={todos} toggleTodo={toggleTodo} />
+        </div>
+      </Fragment>
       <div className="title">
         Te quedan {todos.slice(1).filter((todo) => !todo.completed).length}{" "}
         tareas por completar
       </div>
-
-      <div>
-        <TodoList todos={todos} toggleTodo={toggleTodo} />
-      </div>
-    </Fragment>
+    </div>
   );
 }
 

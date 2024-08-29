@@ -1,0 +1,63 @@
+.conteiner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+  height: 500px;
+  margin-left: 30px;
+  margin-top: 15px;
+  background-color: rgb(187, 159, 120);
+  opacity: 10px;
+  border-radius: 10px;
+}
+
+.buttonTrash {
+  /* background-color: rgb(133, 104, 103); */
+  border-radius: 5px;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.input {
+  background-color: rgb(192, 171, 154);
+  width: 50%;
+  margin: 15px;
+  padding: 10px;
+  font-size: medium;
+  border-radius: 5px;
+  border: none;
+  margin-left: 5%;
+}
+
+.listConteiner {
+  width: 70%; /* Ajusta según el ancho que necesites */
+  height: 50%;
+  margin-top: 20px; /* Espacio entre el botón y la lista */
+  color: black;
+  font-size: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+
+}
+
+.buttonAdd {
+  background-color: aliceblue;
+  color: black;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.title {
+  /* background-color: rgba(255, 235, 205, 0.301); */
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
