@@ -126,14 +126,13 @@ export default function App() {
           AGREGAR
         </button>
 
-        <button onClick={handleClearAll} className="buttonTrash">
-          <img src={TrashIcon} alt="Trash Icon" />
-        </button>
-
         <div className="listConteiner">
           <TodoList todos={todos} toggleTodo={toggleTodo} />
         </div>
         <button className="btnSaveChanges">Guardar Lista</button>
+        <button onClick={handleClearAll} className="buttonTrash">
+          <img src={TrashIcon} alt="Trash Icon" />
+        </button>
       </Fragment>
       <div className="title">
         Te quedan {todos.slice(1).filter((todo) => !todo.completed).length}{" "}

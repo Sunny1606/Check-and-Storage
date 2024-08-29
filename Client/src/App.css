@@ -16,8 +16,8 @@
   border-radius: 5px;
   border: none;
   cursor: pointer;
-  padding: 8px;
-  margin: 8px;
+  padding: 5px;
+  margin-left: 485px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 .buttonTrash:hover {
@@ -25,7 +25,7 @@
 }
 
 .input {
-  background-color: rgb(192, 171, 154);
+  background-color:whitesmoke;
   width: 50%;
   margin: 15px;
   padding: 10px;
@@ -87,7 +87,7 @@
 }
 
 .btnSaveChanges {
-  margin: 15px;
+  margin: 10px;
   background-color: lightblue;
   color: black;
   padding: 10px;
