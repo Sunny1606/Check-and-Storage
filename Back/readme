@@ -1,0 +1,9 @@
+
+//Flujo Completo:
+// El usuario se registra y obtiene un token de autenticación al iniciar sesión.
+// Al hacer clic en "Guardar Lista", tu aplicación frontend enviará una solicitud con el token al backend.
+// El backend verifica si el usuario está autenticado usando el middleware auth.
+// Si el usuario está autenticado, puede guardar o obtener sus tareas en la base de datos.
+// Próximos Pasos:
+// Implementar el frontend para manejar el registro y login de usuarios.
+// Enviar el token de autenticación en las solicitudes para guardar y obtener tareas.

@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { TodoList } from "./components/TodoList";
 import TrashIcon from "./components/icons/icons.svg";
 // eslint-disable-next-line no-unused-vars
@@ -6,6 +7,7 @@ import Appcss from "./App.css";
 import { useState, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Swal from "sweetalert2";
+import Modal from "./components/Modal";
 
 const KEY = "todoApp.todos";
 
@@ -15,9 +17,11 @@ export default function App() {
   //el estado cambia y se modifica lo que hace que al agregar una nueva tarea las demas no se borren, reenderiza el componente una y otra vez
 
   const [todos, setTodos] = useState([{ id: 1, talks: "", completed: false }]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   //useRef se define para actualizar un valor a la prop current myRef.current = newValue . para mantener valores que no desencadenen una nueva renderización cada vez que cambien.
   const todoTaskRef = useRef();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     const storedTodos = JSON.parse(localStorage.getItem(KEY));
@@ -110,6 +114,43 @@ export default function App() {
     });
   };
 
+  const handleSave = async (event) => {
+    event.preventDefault();
+    const authToken = localStorage.getItem("authToken");
+    if (!authToken) {
+      setIsModalOpen(true); // Abre el modal si no está autenticado
+      return;
+    }
+    try {
+      const response = await fetch("/api/todos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+        body: JSON.stringify(todos),
+      });
+
+      if (!response.ok) {
+        throw new Error("Error al guardar la lista");
+      }
+
+      Swal.fire({
+        title: "Guardado",
+        text: "Tu lista ha sido guardada con éxito!",
+        icon: "success",
+        confirmButtonText: "Ok",
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "Error",
+        text: error.message,
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+    }
+  };
+
   return (
     <div className="conteiner">
       <Fragment>
@@ -129,7 +170,9 @@ export default function App() {
         <div className="listConteiner">
           <TodoList todos={todos} toggleTodo={toggleTodo} />
         </div>
-        <button className="btnSaveChanges">Guardar Lista</button>
+        <button onClick={handleSave} className="btnSaveChanges">
+          Guardar Lista
+        </button>
         <button onClick={handleClearAll} className="buttonTrash">
           <img src={TrashIcon} alt="Trash Icon" />
         </button>
@@ -138,6 +181,11 @@ export default function App() {
         Te quedan {todos.slice(1).filter((todo) => !todo.completed).length}{" "}
         tareas por completar
       </div>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSave={handleSave}
+      />
     </div>
   );
 }
