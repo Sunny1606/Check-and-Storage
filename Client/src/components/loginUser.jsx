@@ -1,31 +1,49 @@
-//ESTE VA A SER EL LOGIN DEL USUARIO 
+// //ESTE VA A SER EL LOGIN DEL USUARIO
 
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+// import Button from "react-bootstrap/Button";
+// import Form from "react-bootstrap/Form";
+// // import validation from "./validations";
+// import { useState } from "react";
 
-function BasicExample() {
-  return (
-    <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
+// function BasicExample() {
+//   // const [input, setInput] = useState({
+//   //   email: "",
+//   //   password: "",
+//   // });
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
-  );
-}
+//   // const [errors, setErrors] = useState();
 
-export default BasicExample;
+//   // //funcion que ejecuta el cambio del imput
+//   // const handleChange = (e) => {
+//   //   setInput({
+//   //     ...input,
+//   //     [e.target.value]: e.target.value,
+//   //   });
+//   // };
+
+//   // //funcion que se ejecuta al enviar el formulario
+//   // const handleSubmint = (e) => {
+//   //   e.preventDefault(); // Previene el comportamiento por defecto del formulario (recargar la página)
+
+//   //   const validationErrors = validation(input); //llama la funcion validation
+//   //   setErrors(validationErrors); //actualiza los errores
+
+//   //   if (Object.keys(validationErrors).length === 0) {
+//   //     console.log("formulario enviado", input); //si no hay errores lo envia
+//   //   } else {
+//   //     console.log("hay errores en el formulario"); //si hay errores no lo envia
+//   //   }
+//   // };
+
+//   return (
+//     <Form onSubmit={handleSubmint}>
+//      {/*  */}
+    
+//       <Button  style={{ marginTop: '10px' }}>
+//         Iniciar sesión con Google
+//       </Button>
+//     </Form>
+//   );
+// }
+
+// export default BasicExample;
