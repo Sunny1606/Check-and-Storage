@@ -1,10 +1,7 @@
-// //Flujo del Modal
-// // Abrir el Modal: Cuando el usuario haga clic en "Guardar Lista", el modal se abrirá si el usuario no está autenticado.
 // // Formulario de Autenticación: El modal mostrará un formulario para iniciar sesión o registrarse.
 // // Guardar Tareas: Después de iniciar sesión o registrarse exitosamente, el modal se cerrará y el usuario podrá guardar la lista de tareas.
 
 // import React, { useState } from "react";
-// import style from "./modal.module.css"; // Asegúrate de tener los estilos en este archivo
 
 // const Modal = ({ isOpen, onClose, onSave }) => {
 //   const [email, setEmail] = useState("");
@@ -77,6 +74,18 @@
 
 // export default Modal;
 
+//otro tipo
 
+import React from "react";
+import style from "./modal.module.css"; // Asegúrate de tener los estilos en este archivo
+import GoogleIcon from "@mui/icons-material/Google";
 
-//otro tipo 
+export default function Modal() {
+  return (
+    <div className={style.modaloverlay}>
+      <h2 className={style.h1}>Iniciar sesion con Google</h2>
+      <GoogleIcon style={{ top: 10,fontSize: 40, marginBottom: 20 }} />
+      <button>ENTRAR</button>
+    </div>
+  );
+}

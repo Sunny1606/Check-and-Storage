@@ -1,10 +1,13 @@
 import React, { Fragment, useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, Routes, Route, useNavigate } from "react-router-dom";
 import { TodoList } from "./components/TodoList";
+// import UserLogin from "./components/UserLogin";
 import TrashIcon from "./components/icons/icons.svg";
+import Modal from "./components/Modal";
 import Appcss from "./App.css";
 import { v4 as uuidv4 } from "uuid";
 import Swal from "sweetalert2";
+
 // import { signInWithPopup } from 'firebase/auth';
 // import { auth, provider } from './firebase'; // Importar auth y provider de Google
 
@@ -12,11 +15,14 @@ const KEY = "todoApp.todos";
 
 export default function App() {
   const [todos, setTodos] = useState([{ id: 1, talks: "", completed: false }]);
-  // Eliminar el estado para manejar el modal
-  // const [isModalOpen, setIsModalOpen] = useState(false);
 
   const todoTaskRef = useRef();
-  // const navigate = useNavigate();
+
+  useEffect(() => {
+    if (todos && typeof window !== "undefined") {
+      localStorage.setItem(KEY, JSON.stringify(todos));
+    }
+  }, [todos]);
 
   useEffect(() => {
     const storedTodos = JSON.parse(localStorage.getItem(KEY));
@@ -92,51 +98,30 @@ export default function App() {
     });
   };
 
-  // Función para manejar el inicio de sesión con Google
-  // const handleGoogleLogin = () => {
-  //   signInWithPopup(auth, provider)
-  //     .then((result) => {
-  //       const user = result.user;
-  //       console.log('Usuario autenticado con Google:', user);
-  //       // Puedes guardar la información del usuario o redirigir
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error en la autenticación con Google:', error);
-  //     });
-  // };
-
-  const handleSave = async (event) => {
-    event.preventDefault();
-    const authToken = localStorage.getItem("authToken");
-    if (!authToken) {
-      // handleGoogleLogin(); // Inicia el proceso de autenticación con Google si no está autenticado
+  const handleSave = () => {
+    //talks es la propiedad donde estás guardando las tareas
+    const isEmpty = todos.every((todo) => todo.talks.trim() === "");
+    //Si todas las tareas están vacías, la variable isEmpty será true
+    if (!todos || todos.length === 0 || isEmpty) {
+      Swal.fire({
+        icon: "error",
+        text: "Tu lista esta vacia!",
+        confirmButtonText: "Ok",
+      });
       return;
     }
     try {
-      const response = await fetch("/api/todos", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${authToken}`,
-        },
-        body: JSON.stringify(todos),
-      });
-
-      if (!response.ok) {
-        throw new Error("Error al guardar la lista");
-      }
-
+      localStorage.setItem(KEY, JSON.stringify(todos));
       Swal.fire({
-        title: "Guardado",
-        text: "Tu lista ha sido guardada con éxito!",
         icon: "success",
+        text: "Lista guardada con éxito!",
         confirmButtonText: "Ok",
       });
     } catch (error) {
+      console.error("Error guardando en localStorage:", error);
       Swal.fire({
-        title: "Error",
-        text: error.message,
         icon: "error",
+        text: "Error guardando la lista!",
         confirmButtonText: "Ok",
       });
     }
@@ -147,7 +132,7 @@ export default function App() {
       <Fragment>
         <input
           ref={todoTaskRef}
-          maxlength="50"
+          maxLength="50"
           className="input"
           type="text"
           placeholder="nueva tarea..."
@@ -172,6 +157,7 @@ export default function App() {
         Te quedan {todos.slice(1).filter((todo) => !todo.completed).length}{" "}
         tareas por completar
       </div>
+      <Modal/>
     </div>
   );
 }
