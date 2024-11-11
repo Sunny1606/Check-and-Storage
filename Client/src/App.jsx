@@ -7,6 +7,7 @@ import Modal from "./components/Modal";
 import Appcss from "./App.css";
 import { v4 as uuidv4 } from "uuid";
 import Swal from "sweetalert2";
+import List from "./components/List/List";
 
 // import { signInWithPopup } from 'firebase/auth';
 // import { auth, provider } from './firebase'; // Importar auth y provider de Google
@@ -142,6 +143,7 @@ export default function App() {
         <button onClick={handleAdd} className="buttonAdd">
           AGREGAR
         </button>
+        <List/>
 
         <div className="listConteiner">
           <TodoList todos={todos} toggleTodo={toggleTodo} />

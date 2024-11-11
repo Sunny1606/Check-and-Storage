@@ -6,7 +6,7 @@
   height: 500px;
   margin-left: 30px;
   margin-top: 15px;
-  background-color: rgb(187, 159, 120);
+  background-color: rgb(214, 165, 165);
   opacity: 10px;
   border-radius: 10px;
 }
@@ -96,6 +96,22 @@
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   /* margin-left: 430px; */
 }
+
+.buttonMisT{
+  margin: 10px;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}    
+.buttonMisT:hover{
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.418);
+
+}
+
 .btnSaveChanges:hover {
   background-color:rgba(173, 216, 230, 0.527);
   cursor: pointer;
