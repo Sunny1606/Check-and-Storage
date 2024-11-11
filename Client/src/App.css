@@ -12,12 +12,12 @@
 }
 
 .buttonTrash {
- background-color: red;
+ background-color: grey;
   border-radius: 5px;
   border: none;
   cursor: pointer;
   padding: 5px;
-  margin-left: 485px;
+  /* margin-left: 485px; */
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 .buttonTrash:hover {
@@ -88,13 +88,13 @@
 
 .btnSaveChanges {
   margin: 10px;
-  background-color: lightblue;
+  background-color: rgb(185, 185, 185);
   color: black;
   padding: 10px;
   border: none;
   border-radius: 5px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  margin-left: 430px;
+  /* margin-left: 430px; */
 }
 .btnSaveChanges:hover {
   background-color:rgba(173, 216, 230, 0.527);

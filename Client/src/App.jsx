@@ -157,7 +157,7 @@ export default function App() {
         Te quedan {todos.slice(1).filter((todo) => !todo.completed).length}{" "}
         tareas por completar
       </div>
-      <Modal/>
+      {/* <Modal/> */}
     </div>
   );
 }
